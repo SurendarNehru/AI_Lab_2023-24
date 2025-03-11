@@ -1,6 +1,6 @@
 # Ex.No: 4   Implementation of Alpha Beta Pruning 
-### DATE:                                                                            
-### REGISTER NUMBER : 
+### DATE: 11-03-25                                                                           
+### REGISTER NUMBER : 212222040165
 ### AIM: 
 Write a Alpha beta pruning algorithm to find the optimal value of MAX Player from the given graph.
 ### Steps:
@@ -16,17 +16,41 @@ Write a Alpha beta pruning algorithm to find the optimal value of MAX Player fro
 
 ### Program:
 
+```
+import math
+def Alphabetapruning(depth, index, is_max, values, alpha, beta, targetDepth):
+    # base case: targetDepth reached
+    if depth == targetDepth:
+        return values[index]
 
+    func = max if is_max else min
+    best = float('-inf') if is_max else float('inf')
 
+    for i in range(2):  # iterate over the two possible child nodes
+        val = Alphabetapruning(depth + 1, index * 2 + i, not is_max, values, alpha, beta, targetDepth)
+        best = func(best, val)
 
+        # Alpha-Beta Pruning
+        if is_max:
+            alpha = max(alpha, best)
+        else:
+            beta = min(beta, best)
 
+        # Pruning: if beta <= alpha, break out of the loop
+        if beta <= alpha:
+            break
 
+    return best
 
-
-
+# Driver code
+values = [3, 5, 6, 9, 1, 2, 0, -1]
+targetDepth = math.ceil(math.log2(len(values)))  # calculate depth of the tree
+print("The optimal value is:", Alphabetapruning(0, 0, True, values, float('-inf'), float('inf'), targetDepth))
+```
 
 
 ### Output:
+![Screenshot (9)](https://github.com/user-attachments/assets/f337051c-d7a9-4f13-88c0-f1b7712f0778)
 
 
 
