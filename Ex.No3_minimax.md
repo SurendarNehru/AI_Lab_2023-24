@@ -15,9 +15,8 @@ Write a mini-max search algorithm to find the optimal value of MAX Player from t
 9. Stop the program. 
 
 ### Program:
-
+```
 import math
-
 def minimax(curDepth, nodeIndex, maxTurn, scores, targetDepth):
     # base case: targetDepth reached
     if curDepth == targetDepth:
@@ -36,7 +35,7 @@ treeDepth = math.ceil(math.log2(len(scores)))  # calculate depth of the tree
 print("The optimal value is: ", end="")
 print(minimax(0, 0, True, scores, treeDepth))
 
-
+```
 
 ### Output:
 
