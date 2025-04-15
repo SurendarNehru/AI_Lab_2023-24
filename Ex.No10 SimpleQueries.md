@@ -1,5 +1,5 @@
-# Ex.No: 10  Logic Programming –  Simple queries from facts and rules
-### DATE: 18.03.2025                                                                         
+# Ex.No: 10  Simple queries from facts and rules
+### DATE: 15/04/25                                                                          
 ### REGISTER NUMBER : 212222040165
 ### AIM: 
 To write a prolog program to find the answer of query. 
@@ -11,7 +11,7 @@ To write a prolog program to find the answer of query.
  Step 5:  Pass the query to program. <br> 
  Step 6: Prolog interpreter shows the output and return answer. <br> 
  Step 8:  Stop the program.
-### Program:
+
 ### Task 1:
 Construct the FOL representation for the following sentences <br> 
 1.	John likes all kinds of food.  <br> 
@@ -22,19 +22,22 @@ Construct the FOL representation for the following sentences <br>
    Convert into clause form and Prove that John like Apple by using Prolog. <br> 
 ### Program:
 ```
-food(apple).
-food(vegetable).
+likes(john,X):-
+food(X).
+eats(bill,X):-
+eats(sue,X).
+eats(Y,X):-
+food(X).
 eats(bill,peanuts).
-alive(bill).
-eats(sue,X):-eats(bill,X).
-eats(bill).
+food(apple).
+food(chicken).
+food(peanuts).
 ```
 
-
-
 ### Output:
-![Screenshot (32)](https://github.com/Vikhram-S/AI_Lab_2023-24/assets/146576573/0804bca9-ce70-459f-822b-3de4a4c090bd)
+![image](https://github.com/user-attachments/assets/a2f83621-8d70-4b8e-9243-5eb6ba4beda9)
 
+<br> <br> <br>
 
 ### Task 2:
 Consider the following facts and represent them in predicate form: <br>              
@@ -47,19 +50,14 @@ Convert the facts in predicate form to clauses and then prove by resolution: “
 ### Program:
 ```
 likes(steve,X):-
-     easycourse(X).
+easycourse(X).
 hard(sciencecourse).
 easycourse(X):-
-          course(X,dept(havefun)).
+course(X,dept(havefun)).
 course(bk301,dept(havefun)).
 ```
-
-
 ### Output:
-![Screenshot (33)](https://github.com/Vikhram-S/AI_Lab_2023-24/assets/146576573/318f38c1-c5b8-40b2-b523-f55bd74ba528)
-
-
-
+![image](https://github.com/user-attachments/assets/20bb0a00-72e4-4f7a-9984-e65beb7bd3b1)
 
 ### Task 3:
 Consider the statement <br> 
@@ -68,25 +66,24 @@ Convert to Clause form and prove west is criminal by using Prolog.<br>
 ### Program:
 ```
 criminal(X):-
-	american(X),
-	weapon(Y),
-	hostile(Z),
-	sells(X,Y,Z).
+american(X),
+weapon(Y),
+hostile(Z),
+sells(X,Y,Z).
 weapon(Y):-
-    missile(Y).
+missile(Y).
 hostile(Z):-
-    enemy(Z,X).
+enemy(Z,X).
 sells(west,Y,nano):-
-    missile(Y),
-    owns(nano,Y).
+missile(Y),
+owns(nano,Y).
 missile(m).
 owns(nano,m).
 enemy(nano,america).
 american(west).
 ```
 ### Output:
-![Screenshot (34)](https://github.com/Vikhram-S/AI_Lab_2023-24/assets/146576573/aa255296-7016-48c3-bf05-336df6bcc1d0)
-
+![image](https://github.com/user-attachments/assets/b1de78d8-271c-4fe2-85cb-f555c4a6964d)
 
 ### Result:
 Thus the prolog programs were executed successfully and the answer of query was found.
