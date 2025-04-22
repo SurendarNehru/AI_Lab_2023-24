@@ -1,5 +1,5 @@
 # Ex.No: 4   Implementation of Alpha Beta Pruning 
-### DATE: 11-03-25                                                                           
+### DATE: 25.04.2025                                                                         
 ### REGISTER NUMBER : 212222040165
 ### AIM: 
 Write a Alpha beta pruning algorithm to find the optimal value of MAX Player from the given graph.
@@ -15,42 +15,63 @@ Write a Alpha beta pruning algorithm to find the optimal value of MAX Player fro
 9.  Stop the program. 
 
 ### Program:
-
 ```
-import math
-def Alphabetapruning(depth, index, is_max, values, alpha, beta, targetDepth):
-    # base case: targetDepth reached
-    if depth == targetDepth:
-        return values[index]
-
-    func = max if is_max else min
-    best = float('-inf') if is_max else float('inf')
-
-    for i in range(2):  # iterate over the two possible child nodes
-        val = Alphabetapruning(depth + 1, index * 2 + i, not is_max, values, alpha, beta, targetDepth)
-        best = func(best, val)
-
-        # Alpha-Beta Pruning
-        if is_max:
+# Initial values of Alpha and Beta
+MAX, MIN = 1000, -1000
+# Returns optimal value for current player
+#(Initially called for root and maximizer)
+def minimax(depth, nodeIndex, maximizingPlayer,
+            values, alpha, beta):
+    # Terminating condition. i.e
+    # leaf node is reached
+    if depth == 3:
+        return values[nodeIndex]
+    if maximizingPlayer:
+        best = MIN
+        # Recur for left and right children
+        for i in range(0, 2): 
+            val = minimax(depth + 1, nodeIndex * 2 + i,
+                          False, values, alpha, beta)
+            best = max(best, val)
             alpha = max(alpha, best)
-        else:
+            # Alpha Beta Pruning
+            if beta <= alpha:
+                break
+        return best
+    else:
+        best = MAX
+        # Recur for left and
+        # right children
+        for i in range(0, 2):
+            val = minimax(depth + 1, nodeIndex * 2 + i,
+                            True, values, alpha, beta)
+            best = min(best, val)
             beta = min(beta, best)
-
-        # Pruning: if beta <= alpha, break out of the loop
-        if beta <= alpha:
-            break
-
-    return best
-
-# Driver code
-values = [3, 5, 6, 9, 1, 2, 0, -1]
-targetDepth = math.ceil(math.log2(len(values)))  # calculate depth of the tree
-print("The optimal value is:", Alphabetapruning(0, 0, True, values, float('-inf'), float('inf'), targetDepth))
+            # Alpha Beta Pruning
+            if beta <= alpha:
+                break
+        return best
+values = [3, 5, 6, 9, 1, 2, 0, -1] 
+print("The optimal value is :", minimax(0, 0, True, values, MIN, MAX))
 ```
+
+
+
+
+
+
+
+
+
 
 
 ### Output:
-![Screenshot (9)](https://github.com/user-attachments/assets/f337051c-d7a9-4f13-88c0-f1b7712f0778)
+![{F99565CB-6C39-4E15-83FA-C1EAE9D61B20}](https://github.com/user-attachments/assets/504eb478-ce60-4306-9072-011a66ca4343)
+
+
+
+
+
 
 
 
