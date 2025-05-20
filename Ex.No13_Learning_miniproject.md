@@ -1,6 +1,6 @@
 # Ex.No: 10 - User Identification Using Walking Activity with ResNet
 ### DATE: 13-05-2025                                                                           
-### REGISTER NUMBER : 212222040165
+### REGISTER NUMBER :212222040165
 ### AIM: 
 To write a program to train the classifier for user identification using walking activity data collected from smartphone accelerometers.
 
